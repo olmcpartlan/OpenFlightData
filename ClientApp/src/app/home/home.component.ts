@@ -1,27 +1,23 @@
 import { Component } from '@angular/core';
-import { $http } from '../$http.service'
+
+import { DataService } from '../data.service';
+
+import { $httpService } from '../$http.service';
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
-  buttonPressed() {
-    console.log("hree");
-  
-  }
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    $http({
-      method: 'GET',
-      url: '/someUrl'
-    }).then(function successCallback(response) {
-        // this callback will be called asynchronously
-        // when the response is available
-      }, function errorCallback(response) {
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
-      });
-  }
+    console.log("started");
+    this.dataService.sendGetRequest().subscribe((data: any[]) => {
+      console.log(data);
 
+    })
+
+  }
 }

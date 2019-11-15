@@ -24,7 +24,7 @@ namespace angular.Controllers
             Console.WriteLine("**************************");
 
 
-            return new string[] { "please", "work" };
+            return new string[] { "first", "second" };
         }
 
         
@@ -36,9 +36,11 @@ namespace angular.Controllers
         }
         [HttpGet]
         [Route("/")]
-        public ActionResult<int> Get() {
-            int cnt = dbContext.AirportData.
-            return cnt; 
+        public ActionResult<List<int>> Get() {
+            List<int> vals = new List<int>();
+            vals.Add(12);
+            vals.Add(15);
+            return vals; 
         }
 
 
