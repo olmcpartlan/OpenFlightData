@@ -1,0 +1,47 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+code {
+  color: #e01a76;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+
+.box {
+    
+  margin-left: 5%;
+  width: 90%;
+  height: 500px;
+  align-self: center;
+  background-image: linear-gradient(grey, black); 
+  color: black;
+  margin-top: 150px;
+  
+}
+
+.boxItem {
+  align-self: center;
+}
+
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem black;
+}
+
+.form-group {
+  width: 75%;
+  
+}
+
+.mid {
+  margin-top: 175;
+}
