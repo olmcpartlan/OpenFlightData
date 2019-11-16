@@ -36,10 +36,10 @@ namespace angular.Controllers
         }
         [HttpGet]
         [Route("/")]
-        public ActionResult<List<int>> Get() {
-            List<int> vals = new List<int>();
-            vals.Add(12);
-            vals.Add(15);
+        public ActionResult<List<string>> Get() {
+            List<string> vals = new List<string>() { "first", "second", "third" };
+
+            
             return vals; 
         }
 

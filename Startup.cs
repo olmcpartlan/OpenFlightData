@@ -17,11 +17,23 @@ namespace angular
             Configuration = configuration;
         }
 
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            //From Microsoft Docs
+            services.AddCors(options =>
+            {
+                options.AddPolicy(MyAllowSpecificOrigins,
+                builder =>
+                {
+                    builder.WithOrigins("http://localhost:5000/");
+                });
+            });
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -47,13 +59,17 @@ namespace angular
                 app.UseHsts();
             }
 
-            
+            //From documentation
+            app.UseCors(MyAllowSpecificOrigins);
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             if (!env.IsDevelopment())
             {
                 app.UseSpaStaticFiles();
             }
+
+
 
             app.UseRouting();
 
@@ -72,7 +88,7 @@ namespace angular
 
 
                 //TESTING THIS BLOCK
-                
+
 
                 //TESTING THIS BLOCK
                 if (env.IsDevelopment())
