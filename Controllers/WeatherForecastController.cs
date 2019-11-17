@@ -5,12 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using angular.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace angular.Controllers
 {
 
-    [ApiController]
-    [Route("api/[controller]")]
+    
+
+    
+    [EnableCors("CorsPolicy")]
     public class WeatherForecastController : ControllerBase
     {
         
@@ -29,6 +32,9 @@ namespace angular.Controllers
 
         
     }
+    [ApiController]
+    [Route("api/[controller]")]
+    [EnableCors("MyPolicy")]
     public class DataController {
         private HomeContext dbContext;
         public void WeatherForecastController(HomeContext context) {
@@ -37,9 +43,11 @@ namespace angular.Controllers
         [HttpGet]
         [Route("/")]
         public ActionResult<List<int>> Get() {
+            Console.WriteLine("Inside proxy route");
             List<int> vals = new List<int>();
             vals.Add(12);
             vals.Add(15);
+            vals.Add(20);
             return vals; 
         }
 

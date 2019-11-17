@@ -17,14 +17,25 @@ import { $httpService } from '../$http.service';
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService) { 
+    this.dataService.sendGetRequest()
+      .subscribe((data) => {
+        console.log(data);
+      });
+  }
 
-  ngOnInit() {
-    console.log("started");
-    this.dataService.sendGetRequest().subscribe((data: any[]) => {
+  // ngOnInit() {
+  //   console.log("started");
+  //   this.dataService.sendGetRequest().subscribe(
+  //     () => console.log("loaded")
+  //   )
+    
+  // }
+  _sendGetRequest() {
+    this.dataService.sendGetRequest().subscribe((data => {
       console.log(data);
-
-    })
+    }))
+    console.log("after requset");
 
   }
 }

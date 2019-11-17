@@ -22,6 +22,7 @@ namespace angular
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc(option => option.EnableEndpointRouting = false);
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -31,8 +32,24 @@ namespace angular
             services.AddDbContext<HomeContext>(options => options.UseSqlServer(Configuration["DBInfo:ConnectionString"]));
             services.AddSession();
             services.AddControllers();
-        }
+            // if (_env.IsDevelopment())
+            // {
 
+            // }
+            services.AddCors(options =>
+            {
+                options.AddPolicy("MyPolicy",
+                    builder =>
+                    {
+                        builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                        
+                    });
+            });
+        }
+        
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -46,9 +63,6 @@ namespace angular
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
-            
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
             if (!env.IsDevelopment())
             {
@@ -57,12 +71,24 @@ namespace angular
 
             app.UseRouting();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller}/{action=Index}/{id?}");
-            });
+            // app.UseEndpoints(endpoints =>
+            // {
+            //     endpoints.MapControllerRoute(
+            //         name: "default",
+            //         pattern: "{controller}/{action=Index}/{id?}");
+            // });
+
+            app.UseCors("AllowAll");
+            app.UseMvc();
+
+
+            // app.UseMvc(routes => 
+            // {
+            //     routes.MapRoute(
+            //         name: "default",
+            //         template: "{controller}/"
+            //     );
+            // });
 
             app.UseSpa(spa =>
             {
@@ -72,12 +98,13 @@ namespace angular
 
 
                 //TESTING THIS BLOCK
-                
+
 
                 //TESTING THIS BLOCK
                 if (env.IsDevelopment())
                 {
                     spa.UseProxyToSpaDevelopmentServer("http://localhost:4200/");
+
                 }
             });
         }
