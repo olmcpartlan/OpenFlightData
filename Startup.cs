@@ -17,12 +17,27 @@ namespace angular
             Configuration = configuration;
         }
 
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+<<<<<<< HEAD
             services.AddMvc(option => option.EnableEndpointRouting = false);
+=======
+
+            //From Microsoft Docs
+            services.AddCors(options =>
+            {
+                options.AddPolicy(MyAllowSpecificOrigins,
+                builder =>
+                {
+                    builder.WithOrigins("http://localhost:5000/");
+                });
+            });
+>>>>>>> 93181999dd9eb4419ffa9c079dfed3e9f9bee740
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -63,11 +78,21 @@ namespace angular
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+<<<<<<< HEAD
+=======
+
+            //From documentation
+            app.UseCors(MyAllowSpecificOrigins);
+
+            app.UseHttpsRedirection();
+>>>>>>> 93181999dd9eb4419ffa9c079dfed3e9f9bee740
             app.UseStaticFiles();
             if (!env.IsDevelopment())
             {
                 app.UseSpaStaticFiles();
             }
+
+
 
             app.UseRouting();
 

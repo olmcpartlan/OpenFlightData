@@ -42,12 +42,19 @@ namespace angular.Controllers
         }
         [HttpGet]
         [Route("/")]
+<<<<<<< HEAD
         public ActionResult<List<int>> Get() {
             Console.WriteLine("Inside proxy route");
             List<int> vals = new List<int>();
             vals.Add(12);
             vals.Add(15);
             vals.Add(20);
+=======
+        public ActionResult<List<string>> Get() {
+            List<string> vals = new List<string>() { "first", "second", "third" };
+
+            
+>>>>>>> 93181999dd9eb4419ffa9c079dfed3e9f9bee740
             return vals; 
         }
 
