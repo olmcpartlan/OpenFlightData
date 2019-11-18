@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { DataService } from '../data.service';
 
 import { $httpService } from '../$http.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 //Right now 4200 is successfully calling "localhost:5000", but returns an error because of 'localhost'
 
@@ -17,11 +18,11 @@ import { $httpService } from '../$http.service';
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
-  constructor(private dataService: DataService) { 
-    this.dataService.sendGetRequest()
-      .subscribe((data) => {
-        console.log(data);
-      });
+  form: FormGroup;
+  constructor(private dataService: DataService, public fb: FormBuilder) {
+    this.form = this.fb.group({
+      muni: ['']
+    })
   }
 
   // ngOnInit() {
@@ -31,11 +32,16 @@ export class HomeComponent {
   //   )
     
   // }
-  _sendGetRequest() {
-    this.dataService.sendGetRequest().subscribe((data => {
-      console.log(data);
-    }))
-    console.log("after requset");
+  // public _sendGetRequest() {
+  //   this.dataService.sendGetRequest()
+  //     .subscribe((data) => {
+  //       console.log(data);
+  //     });
+  // }
 
+  public sendForm() {
+    console.log(this.form.value);
+    this.dataService.sendGetRequest(this.form.value)
+      .subscribe();
   }
 }

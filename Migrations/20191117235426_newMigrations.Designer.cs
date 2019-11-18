@@ -9,7 +9,7 @@ using angular.Models;
 namespace angular.Migrations
 {
     [DbContext(typeof(HomeContext))]
-    [Migration("20191115134506_newMigrations")]
+    [Migration("20191117235426_newMigrations")]
     partial class newMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
