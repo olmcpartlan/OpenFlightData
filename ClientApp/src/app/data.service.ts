@@ -9,7 +9,7 @@ import { HomeComponent } from './home/home.component';
   providedIn: 'root'
 })
 export class DataService {
-
+  allAirports = [];
   @Input() airports = [];
 
   constructor(private httpClient: HttpClient) { }
@@ -18,16 +18,30 @@ export class DataService {
     return this.airports;
   }
 
+  returnAllResponse() {
+    return this.allAirports;
+  }
+
+
+  getAllAirports() {
+    return this.httpClient.get(`http://localhost:5000/`)
+      .map((response: Response) => {
+        console.log(response);
+        for(var port in response) {
+          this.allAirports.push(response[port].name);
+        }
+      }); 
+      
+  }
+
   sendGetRequest(location) {
     console.log(location.muni);
 
     return this.httpClient.get(`http://localhost:5000/${location.muni}`)
       .map((response: Response) => {
-        console.log("****************");
         console.log(response);
 
         for (var port in response) {
-          console.log(response[port].name);
           this.airports.push(response[port].name);
         }
         

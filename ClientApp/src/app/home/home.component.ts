@@ -14,15 +14,24 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 
 export class HomeComponent {
   selectedAirports;
+  allAirports;
   form: FormGroup;
   constructor(private dataService: DataService, public fb: FormBuilder) {
     this.form = this.fb.group({
       muni: ['']
     })
+    this.dataService.getAllAirports()
+      .subscribe();
+      this.getAirports();
+  }
+
+  getAirports() {
+    var res = this.dataService.returnAllResponse();
+    this.allAirports = res;
+    
   }
 
   displayVals() {
-    console.log("PLEASE")
     var data = this.dataService.returnData();
     console.log(data);
     this.selectedAirports = data;
@@ -33,4 +42,5 @@ export class HomeComponent {
       .subscribe();
     this.displayVals();
   }
+
 }

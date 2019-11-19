@@ -23,12 +23,12 @@ namespace angular.Controllers
         [Route("/")]
 
         public ActionResult<List<Airport>> Get() {
-            Console.WriteLine("Inside proxy route");
+            Console.WriteLine("Inside API Index Route");
             List<int> vals = new List<int>();
             vals.Add(12);
             vals.Add(15);
             vals.Add(20);
-            List<Airport> allAirports = dbContext.AirportData.Where(a => a.municipality == "Chicago").ToList();
+            List<Airport> allAirports = dbContext.AirportData.ToList();
             return allAirports; 
         }
         [HttpGet]

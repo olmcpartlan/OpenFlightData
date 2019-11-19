@@ -45,3 +45,7 @@ code {
 .mid {
   margin-top: 175;
 }
+
+.input-group, .btn {
+  margin: 20px;
+}

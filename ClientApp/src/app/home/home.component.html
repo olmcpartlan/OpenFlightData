@@ -5,45 +5,65 @@
 
 </head>
 
+<!-- Form to Search Cities -->
 
 <body ng-controller="dataCtr">
   <div class="box box-shadow">
     <div class="container">
       <form class="form-group" [formGroup]="form" (ngSubmit)="sendForm()">
         <div class="row">
-
           <h2>Enter your City: </h2>
           <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Search..." aria-label="Recipient's username"
               aria-describedby="button-addon2" formControlName="muni" />
-
             <button class="btn-primary" deleteurl="/delete">Find Airports!</button>
+          </div>
+        </div>
+      </form>
+      <div class="row">
+        <div class="input-group mb-1">
+          <select class="form-control">
+            <option *ngFor="let airport of selectedAirports" [value]=port>{{airport}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <button class="btn btn-primary" [routerLink]="['/time']">Next...</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 
+
+  This container will be for searching specific airports by name.
+  Maybe goes into a different component?
+  - Form is not working, need to figure out predicting search bar first
+  - Want input to be "search airport by name"
+  - Both forms are going to redirect to "/time"
+
+  -->
+
+  <div class="box box-shadow">
+    <div class="container">
+      <form class="form-group" [formGroup]="form" (ngSubmit)="getAll()">
+        <div class="row">
+
+          <h2>Search Airport by Name:</h2>
+          <div class="input-group mb-3">
+            <input type="text" class="input-group" placeholder="Search..." aria-label="Recipient's username"
+              aria-describedby="button-addon2" formControlName="muni" />
+            <select class="input-group">
+              <option *ngFor="let airport of allAirports" [value]=port>{{airport}}</option>
+            </select>
             
           </div>
         </div>
       </form>
+      <div class="row">
+        <button class="btn btn-primary" [routerLink]="['/time']">Next...</button>
 
-
-
-        <div class="row">
-          <div class="input-group mb-1">
-
-            <!-- {/* <div class="input-group mb-3"> */} -->
-            <!-- <input class="form-control" type="text" /> -->
-
-            <select class="form-control">
-              <option *ngFor="let airport of selectedAirports" [value]=port>{{airport}}</option>
-            </select>
-
-            <!-- {/* </div> */} -->
-          </div>
-
-        </div>
-        <div class="row">
-          <!-- <Link to="/time"><button class="btn-primary" >Next</button></Link> -->
-          <button class="btn btn-primary" [routerLink]="['/time']">Next...</button>
-
-        </div>
+      </div>
 
 
     </div>
