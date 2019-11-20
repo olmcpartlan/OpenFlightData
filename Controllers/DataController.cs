@@ -28,7 +28,7 @@ namespace angular.Controllers
             vals.Add(12);
             vals.Add(15);
             vals.Add(20);
-            List<Airport> allAirports = dbContext.AirportData.ToList();
+            List<Airport> allAirports = dbContext.AirportData.Where(a => a.type == "large_airport").ToList();
             return allAirports; 
         }
         [HttpGet]
