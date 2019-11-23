@@ -19,6 +19,7 @@ import { SearchComponent } from './search/search.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
+import { DisplayComponent } from './display/display.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { MatInputModule } from '@angular/material/input';
     CounterComponent,
     FetchDataComponent,
     TimeComponent,
-    SearchComponent
+    SearchComponent,
+    DisplayComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -49,6 +51,7 @@ import { MatInputModule } from '@angular/material/input';
       { path: 'counter', component: CounterComponent },
       { path: 'search', component: SearchComponent },
       { path: 'time', component: TimeComponent },
+      { path: 'display', component: DisplayComponent },
 
     ])
   ],

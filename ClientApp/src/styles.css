@@ -49,3 +49,12 @@ code {
 .input-group, .btn {
   margin: 20px;
 }
+
+.search {
+  border: 1px solid;
+  height: 300px;
+}
+
+.cdk-overlay-container {
+  margin-left: 13%;
+}

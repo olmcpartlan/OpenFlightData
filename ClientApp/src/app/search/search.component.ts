@@ -34,7 +34,6 @@ export class SearchComponent implements OnInit {
   displayAirports() {
     var res = this.dataService.allAirports;
     this.airports = res;
-    console.log(`Component: ${res}`);
     
   }
 

@@ -4,6 +4,7 @@ import { DataService } from '../data.service';
 
 import { $httpService } from '../$http.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { RouterModule, Routes, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -15,11 +16,20 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class HomeComponent {
   selectedAirports;
   allAirports;
+  allIDs;
+  ids;
+  selectedAirport;
+  directions;
   form: FormGroup;
-  constructor(private dataService: DataService, public fb: FormBuilder) {
+  idForm: FormGroup;
+  constructor(private router: Router, private dataService: DataService, public fb: FormBuilder) {
     this.form = this.fb.group({
       muni: ['']
     })
+    this.idForm = this.fb.group({
+      airport: ['']
+    })
+
     this.dataService.getAllAirports()
       .subscribe();
       this.getAirports();
@@ -29,11 +39,28 @@ export class HomeComponent {
     var res = this.dataService.returnAllResponse();
     this.allAirports = res;
     
+    
+  }
+  getSelectedAirport() {
+    var res = this.dataService.returnSelectedAirport();
+    this.selectedAirport = res;
+    setTimeout(() => {
+      this.directions = this.dataService.directions;
+      console.log(`Home Direction: ${this.directions}`);
+      this.router.navigate(["/display"]);
+    }, 1000);
+    
+  }
+
+  
+
+  getIds() {
+    var res = this.dataService.returnIds();
+    this.ids = res;
   }
 
   displayVals() {
     var data = this.dataService.returnData();
-    console.log(data);
     this.selectedAirports = data;
   }
 
@@ -41,6 +68,14 @@ export class HomeComponent {
     this.dataService.sendGetRequest(this.form.value)
       .subscribe();
     this.displayVals();
+    this.getIds();
   }
+  public sendIds() {
+    this.dataService.sendAirport(this.idForm.value)
+      .subscribe();
+    this.getSelectedAirport();
+      
+  }
+
 
 }

@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using angular.Models;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
+
 
 namespace angular
 {
@@ -24,7 +26,9 @@ namespace angular
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(option => option.EnableEndpointRouting = false);
+            services.AddMvc(option => option.EnableEndpointRouting = false)
+                .AddNewtonsoftJson();
+                
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -34,6 +38,7 @@ namespace angular
             services.AddDbContext<HomeContext>(options => options.UseSqlServer(Configuration["DBInfo:ConnectionString"]));
             services.AddSession();
             services.AddControllers();
+                
             // if (_env.IsDevelopment())
             // {
 

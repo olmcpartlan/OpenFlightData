@@ -14,22 +14,24 @@
         <div class="row">
           <h2>Enter your City: </h2>
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Search..." aria-label="Recipient's username"
+            <input type="text" class="form-control" placeholder="Search..." 
               aria-describedby="button-addon2" formControlName="muni" />
-            <button class="btn-primary" deleteurl="/delete">Find Airports!</button>
+            <button class="btn-primary">Find Airports!</button>
           </div>
         </div>
       </form>
       <div class="row">
         <div class="input-group mb-1">
-          <select class="form-control">
-            <option *ngFor="let airport of selectedAirports" [value]=port>{{airport}}</option>
-          </select>
+          <form  [formGroup]="idForm" (ngSubmit)="sendIds()">
+            <select class="form-control" formControlName="airport">
+              <option *ngFor="let airport of selectedAirports" [value]=airport.id>{{airport.name}}</option>
+            </select>
+            <button class="btn btn-primary">Next...</button>
+          </form>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <button class="btn btn-primary" [routerLink]="['/time']">Next...</button>
-      </div>
+        <div class="row">
+        </div>
     </div>
   </div>
 
