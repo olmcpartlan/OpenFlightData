@@ -29,6 +29,11 @@ export class DataService {
     return this.ids;
   }
 
+  returnDirections() {
+    console.log(this.directions);
+    return this.directions;
+  }
+
   returnAllResponse() {
     return this.allAirports;
   }

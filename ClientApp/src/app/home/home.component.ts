@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-
 import { DataService } from '../data.service';
-
-import { $httpService } from '../$http.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { RouterModule, Routes, Router } from '@angular/router';
+import { DisplayComponent } from '../display/display.component';
+import { ResultService } from '../result.service';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +21,7 @@ export class HomeComponent {
   directions;
   form: FormGroup;
   idForm: FormGroup;
-  constructor(private router: Router, private dataService: DataService, public fb: FormBuilder) {
+  constructor(private router: Router, private dataService: DataService, public fb: FormBuilder, private result: ResultService) {
     this.form = this.fb.group({
       muni: ['']
     })
@@ -38,18 +37,23 @@ export class HomeComponent {
   getAirports() {
     var res = this.dataService.returnAllResponse();
     this.allAirports = res;
-    
-    
+  
   }
+  
+  sendDirections() {
+    return this.directions;
+  }
+
   getSelectedAirport() {
     var res = this.dataService.returnSelectedAirport();
     this.selectedAirport = res;
     setTimeout(() => {
       this.directions = this.dataService.directions;
+      // this.dataService.directions = this.directions;
       console.log(`Home Direction: ${this.directions}`);
+      this.result.returnDirections(this.directions);
       this.router.navigate(["/display"]);
     }, 1000);
-    
   }
 
   

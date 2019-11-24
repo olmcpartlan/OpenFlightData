@@ -42,9 +42,6 @@ import { DisplayComponent } from './display/display.component';
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatInputModule,
-    
-    
-    
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -55,7 +52,7 @@ import { DisplayComponent } from './display/display.component';
 
     ])
   ],
-  providers: [],
+  providers: [HomeComponent, DisplayComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
