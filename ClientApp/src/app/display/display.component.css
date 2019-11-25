@@ -1,4 +1,16 @@
 .forecast {
-    border: 1px solid;
-    color: black;
+    width: 30%;
+    margin-right: 20px;
+    display: inline-block;
+}
+
+.container{
+    margin-top: 50px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.image {
+    width: 100%;
 }
