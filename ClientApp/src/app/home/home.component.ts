@@ -19,6 +19,8 @@ export class HomeComponent {
   ids;
   selectedAirport;
   directions;
+  timestamps;
+  temp;
   form: FormGroup;
   idForm: FormGroup;
   constructor(private router: Router, private dataService: DataService, public fb: FormBuilder, private result: ResultService) {
@@ -47,11 +49,14 @@ export class HomeComponent {
   getSelectedAirport() {
     var res = this.dataService.returnSelectedAirport();
     this.selectedAirport = res;
+    console.log(this.selectedAirport);
     setTimeout(() => {
       this.directions = this.dataService.directions;
+      this.timestamps = this.dataService.timestamps;
+      this.temp = this.dataService.temp;
       // this.dataService.directions = this.directions;
       console.log(`Home Direction: ${this.directions}`);
-      this.result.returnDirections(this.directions);
+      this.result.returnDirections(this.directions, this.timestamps, this.selectedAirport, this.temp);
       this.router.navigate(["/display"]);
     }, 1000);
   }

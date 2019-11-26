@@ -17,6 +17,9 @@ export class DataService {
   selectedAirport;
   directions = [];
   converted;
+  timestamps = [];
+  location;
+  temp = [];
   @Input() airports = [];
 
   constructor(private httpClient: HttpClient) { }
@@ -58,7 +61,6 @@ export class DataService {
   }
 
   sendGetRequest(location) {
-
     return this.httpClient.get(`http://localhost:5000/${location.muni}`)
       .map((response: Response) => {
 
@@ -76,6 +78,8 @@ export class DataService {
         for(var res in response) {
           // console.log(`RESPONSE: ${response[res].wind.deg}`);
           this.convertDirection(response[res].wind.deg);
+          this.timestamps.push(response[res].dt_txt);
+          this.temp.push(response[res].main.temp);
         }
         
       })

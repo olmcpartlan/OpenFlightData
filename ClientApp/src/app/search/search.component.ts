@@ -6,6 +6,17 @@ import { DataService } from '../data.service'
 /**
  * @title Plain input autocomplete
  */
+
+//Still need to finish form for Search Componenet
+
+//Getting airport names to filter on frontend
+
+//Need to get associated ID for airport
+  //Data Service has a variable for all airport IDs
+  //Get all IDs or somehow send chosen ID??
+
+//Probably going to make a very similar function to the Home component //because theyre both getting redirected to the Display Component. 
+
 @Component({
   selector: 'app-home',
   templateUrl: './search.component.html',
