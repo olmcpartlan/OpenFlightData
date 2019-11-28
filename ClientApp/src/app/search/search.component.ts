@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { DataService } from '../data.service'
 import { Router } from '@angular/router';
+import { ResultService } from '../result.service';
 /**
  * @title Plain input autocomplete
  */
@@ -32,7 +33,10 @@ export class SearchComponent implements OnInit {
   selectedAirport;
   searchForm: FormGroup;
   filteredPorts: Observable<string[]>;
-  constructor(private dataService: DataService, private fb: FormBuilder, private router: Router) {
+  directions;
+  timestamps;
+  temp;
+  constructor(private dataService: DataService, private fb: FormBuilder, private router: Router, private result: ResultService) {
     this.dataService.getAllAirports()
       .subscribe();
     this.displayAirports();
@@ -62,10 +66,19 @@ export class SearchComponent implements OnInit {
     for(var port in this.allAirports) {
       if(this.allAirports[port].name == this.selectedAirport ) {
         console.log(this.allAirports[port].id);
+        this.dataService.searchAirport(this.allAirports[port].id);
+        this.directions = this.dataService.directions;
+        this.timestamps = this.dataService.timestamps;
+        this.temp = this.dataService.temp;
+        console.log(this.directions);
+        console.log(this.timestamps);
+        console.log(this.temp);
         setTimeout(() => {
-          this.dataService.searchAirport(this.allAirports[port].id);
-          // this.router.navigate(["/display"]);
-        }, 1000);
+          this.result.returnDirections(this.directions, this.timestamps, this.temp);
+          
+          this.router.navigate(["/display"]);
+        }, 500);
+        
       }
 
     }

@@ -87,28 +87,28 @@ export class DataService {
       })
   }
   searchAirport(id) {
-    console.log("in request");
-    console.log(`localhost:5000/airport/${id}`);
+    console.log(`http://localhost:5000/airport/${id}`);
     return this.httpClient.get(`http://localhost:5000/airport/${id}`)
       .map((response: Response) => {
         
         for(var res in response) {
           // console.log(`RESPONSE: ${response[res].wind.deg}`);
-          
           this.convertDirection(response[res].wind.deg);
           this.timestamps.push(response[res].dt_txt);
           this.temp.push(response[res].main.temp);
         }
         
+        
       })
+      .subscribe();
+      
   }
-
+  
   convertDirection(deg) {
     var route = `http://localhost:5000/airport/convert/${deg}`;
     return this.httpClient.get(route, {responseType: 'text'})
       .subscribe((res) => {
       this.directions.push(res);
-      console.log(this.directions);
       
     });
   

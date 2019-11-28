@@ -56,7 +56,7 @@ export class HomeComponent {
       this.temp = this.dataService.temp;
       // this.dataService.directions = this.directions;
       console.log(`Home Direction: ${this.directions}`);
-      this.result.returnDirections(this.directions, this.timestamps, this.selectedAirport, this.temp);
+      this.result.returnDirections(this.directions, this.timestamps, this.temp);
       this.router.navigate(["/display"]);
     }, 1000);
   }

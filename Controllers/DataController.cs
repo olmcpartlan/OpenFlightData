@@ -66,6 +66,7 @@ namespace angular.Controllers
         [Route("/airport/{id}")]
         public async Task<JArray> GetWeather(string id)
         {
+            Console.WriteLine("in method");
             Airport currentAirport = dbContext.AirportData.FirstOrDefault(a => a.id == id);
             string cityname = currentAirport.municipality;
             string code = currentAirport.iso_country;

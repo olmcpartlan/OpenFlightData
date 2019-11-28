@@ -12,10 +12,8 @@ export class ResultService {
   fh = [];
   constructor() { }
 
-  returnDirections(dir, time, airport, temp) {
-    console.log(airport);
+  returnDirections(dir, time, temp) {
     this.temp = temp;
-    this.airport = airport;
     this.directions = dir;
     this.timestamps = time;
     for(var num in this.temp) {
