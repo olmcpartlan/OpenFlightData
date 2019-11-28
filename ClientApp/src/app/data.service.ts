@@ -19,6 +19,7 @@ export class DataService {
   converted;
   timestamps = [];
   location;
+  searchAirports = [];
   temp = [];
   @Input() airports = [];
 
@@ -55,6 +56,7 @@ export class DataService {
         for (var port in response) {
           this.allAirports.push(response[port].name);
           this.allIds.push(response[port].id);
+          this.searchAirports.push(response[port]);
         }
       });
 
@@ -77,6 +79,22 @@ export class DataService {
         console.log(response);
         for(var res in response) {
           // console.log(`RESPONSE: ${response[res].wind.deg}`);
+          this.convertDirection(response[res].wind.deg);
+          this.timestamps.push(response[res].dt_txt);
+          this.temp.push(response[res].main.temp);
+        }
+        
+      })
+  }
+  searchAirport(id) {
+    console.log("in request");
+    console.log(`localhost:5000/airport/${id}`);
+    return this.httpClient.get(`http://localhost:5000/airport/${id}`)
+      .map((response: Response) => {
+        
+        for(var res in response) {
+          // console.log(`RESPONSE: ${response[res].wind.deg}`);
+          
           this.convertDirection(response[res].wind.deg);
           this.timestamps.push(response[res].dt_txt);
           this.temp.push(response[res].main.temp);
