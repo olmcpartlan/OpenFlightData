@@ -1,6 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Provide sufficient contrast against white background */
+
+body {
+  height: 1000px;
+  width: 100%;
+  background-size: 100% 100%;
+  background-image: url("C:/assets/background.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /* C:\path\file */
+}
+
 a {
   color: #0366d6;
 }
@@ -9,6 +20,13 @@ code {
   color: #e01a76;
 }
 
+.result {
+  color: white;
+}
+
+.btn {
+  margin: 0px;
+}
 .btn-primary {
   color: #fff;
   background-color: #1b6ec2;
@@ -17,44 +35,76 @@ code {
 
 
 .box {
-    
-  margin-left: 5%;
-  width: 90%;
-  height: 500px;
-  align-self: center;
-  background-image: linear-gradient(grey, black); 
-  color: black;
-  margin-top: 150px;
-  
-}
-
-.boxItem {
-  align-self: center;
-}
-
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem black;
-}
-
-.form-group {
+  display: table;
+  margin: auto;
   width: 75%;
-  
+  height: 400px;
+  background-color: rgba(0,0,0, 0.3);
+  margin-top: 150px;
+  border-radius: 25px;
+  box-shadow: 0 .25rem .50rem grey;
+  text-align: center;
+
 }
 
-.mid {
-  margin-top: 175;
-}
-
-.input-group, .btn {
+.form-control {
   margin: 20px;
+  width: 60%;
+  display: inline-block;
+  /* margin-left: 20%; */
+
 }
+
 
 .search {
-  border: 1px solid;
-  height: 300px;
+  margin-top: 75px;
+  text-align: center;
+}
+
+.result {
+  margin-top: 75px;
+  margin-bottom: 200px;
+}
+
+
+.footer {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 100px;
+  background-color: #363636;
+  color: white;
+}
+
+
+.image {
+  width: 30px;
+  margin-right: 10px;
+}
+
+.linkedin {
+  width: 40px;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+
+}
+
+.mat-autocomplete-panel {
+  color: white;
+
 }
 
 .cdk-overlay-container {
-  margin-left: 13%;
+  margin-top: -890px;
+  margin-left: 25%;
+}
+
+.searchInput {
+  width: 60%;
 }

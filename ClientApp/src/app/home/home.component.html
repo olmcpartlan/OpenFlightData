@@ -7,45 +7,26 @@
 
 <!-- Form to Search Cities -->
 
-<body ng-controller="dataCtr">
-  <div class="box box-shadow">
-    <div class="container">
+<!-- <body ng-controller="dataCtr"> -->
+  <div>
+    <div class="box">
       <form class="form-group" [formGroup]="form" (ngSubmit)="sendForm()">
-        <div class="row">
-          <h2>Enter your City: </h2>
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Search..." 
-              aria-describedby="button-addon2" formControlName="muni" />
-            <button class="btn-primary">Find Airports!</button>
-          </div>
-        </div>
+        <h2>Enter your City: </h2>
+        <input type="text" class="form-control" placeholder="Search..." aria-describedby="button-addon2"
+          formControlName="muni" />
+        <button class="btn btn-primary">Search</button>
       </form>
-      <div class="row">
-        <div class="input-group mb-1">
-          <form  [formGroup]="idForm" (ngSubmit)="sendIds()">
-            <select class="form-control" formControlName="airport">
-              <option *ngFor="let airport of selectedAirports" [value]=airport.id>{{airport.name}}</option>
-            </select>
-            <button class="btn btn-primary">Next...</button>
-          </form>
-          </div>
-        </div>
-        <div class="row">
-        </div>
+      <form [formGroup]="idForm" (ngSubmit)="sendIds()">
+        <select class="form-control" formControlName="airport">
+          <option *ngFor="let airport of selectedAirports" [value]=airport.id>{{airport.name}}</option>
+        </select>
+        <button class="btn btn-primary">Next...  </button>
+      </form>
     </div>
+
+    
   </div>
 
 
-  <!-- 
 
-  This container will be for searching specific airports by name.
-  Maybe goes into a different component?
-  - Form is not working, need to figure out predicting search bar first
-  - Want input to be "search airport by name"
-  - Both forms are going to redirect to "/time"
-
-  -->
-
-  
-
-</body>
+<!-- </body> -->

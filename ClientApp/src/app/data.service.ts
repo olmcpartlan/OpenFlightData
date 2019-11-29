@@ -51,6 +51,7 @@ export class DataService {
   }
 
   getAllAirports() {
+    this.allAirports.length = 0;
     return this.httpClient.get(`http://localhost:5000/`)
       .map((response: Response) => {
         for (var port in response) {

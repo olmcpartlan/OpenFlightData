@@ -12,15 +12,18 @@ import { Router } from '@angular/router';
   providers: [DataService],
   template: 
   `
-  <div *ngFor="let row of list; index as i">
-    <div class="container">
-      <h4>{{dates[i*8]}}</h4>
-      
-      <div class="forecast" *ngFor="let dir of row; index as j">
-        <p>Wind: {{dir}}</p>
-        <p>{{times[(8*i)+j]}}</p>
-        <p>{{temp[(8*i)+j]}}°F</p>
-        <img class="image" src="assets/directions/{{dir}}.png" alt="err" />
+  <div class="result">
+    <div *ngFor="let row of list; index as i">
+      <div class="container">
+        <h4>{{dates[i*8]}}</h4>
+        
+        <div class="forecast" *ngFor="let dir of row; index as j">
+          <p>Wind: {{dir}}</p>
+          <p>{{times[(8*i)+j]}}</p>
+          <p>{{temp[(8*i)+j]}}°F</p>
+          <p>Flight Direction: </p>
+          <img class="image" src="assets/directions/{{dir}}.png" alt="err" />
+        </div>
       </div>
     </div>
   </div>

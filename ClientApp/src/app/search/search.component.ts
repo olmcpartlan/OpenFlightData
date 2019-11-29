@@ -43,6 +43,7 @@ export class SearchComponent implements OnInit {
     this.searchForm = this.fb.group({
       airport: ['']
     })
+    console.log(`airports: ${this.allAirports}`)
   }
 
   ngOnInit() {
