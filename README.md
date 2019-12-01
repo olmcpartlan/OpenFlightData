@@ -8,4 +8,4 @@ Technologies:
 * SQL Server
 * JavaScript/TypeScript
 
-Utilizes [OpenWeatherMap] (https://openweathermap.org/api) API and [OurAirpots] (https://ourairports.com/data/) Airport CSV as Database.
+Utilizes [OpenWeatherMap](https://openweathermap.org/api) API and [OurAirpots](https://ourairports.com/data/) Airport CSV as Database.
